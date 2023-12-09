@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Form Data Diri</h1>
+
+    <form id="form_data_diri">
+      <label for="nama">Nama Lengkap:</label><br />
+      <input type="text" id="nama" name="nama" /><br />
+
+      <label for="tempat_lahir">Tempat Lahir:</label><br />
+      <input type="text" id="tempat_lahir" name="tempat_lahir" /><br />
+
+      <label for="tanggal_lahir">Tanggal Lahir:</label><br />
+      <input type="date" id="tanggal_lahir" name="tanggal_lahir" /><br />
+
+      <label for="alamat">Alamat:</label><br />
+      <textarea id="alamat" name="alamat"></textarea><br />
+
+      <label for="no_telepon">Nomor Telepon:</label>
+      <input type="tel" id="no_telepon" name="no_telepon" /><br />
+
+      <label for="jenis_kelamin">Jenis Kelamin:</label><br />
+      <input
+        type="radio"
+        id="laki_laki"
+        name="jenis_kelamin"
+        value="Laki-laki"
+      />
+      <label for="laki_laki">Laki-laki</label>
+      <input
+        type="radio"
+        id="perempuan"
+        name="jenis_kelamin"
+        value="Perempuan"
+      />
+      <label for="perempuan">Perempuan</label><br />
+
+      <label for="agama">Agama:</label><br />
+      <select id="agama" name="agama">
+        <option value="Islam">Islam</option>
+        <option value="Kristen">Kristen</option>
+        <option value="Hindu">Hindu</option>
+        <option value="Buddha">Buddha</option>
+        <option value="Katolik">Katolik</option>
+        <option value="Lainnya">Lainnya</option></select
+      ><br />
+
+      <label for="hobi">Hobi:</label><br />
+      <input type="checkbox" id="bacabuku" name="hobi[]" value="Bacabuku" />
+      <label for="bacabuku">Bacabuku</label>
+      <input type="checkbox" id="olahraga" name="hobi[]" value="Olahraga" />
+      <label for="olahraga">Olahraga</label>
+      <input type="checkbox" id="maingame" name="hobi[]" value="Maingame" />
+      <label for="maingame">Maingame</label>
+      <input type="checkbox" id="hiking" name="hobi[]" value="Hiking" />
+      <label for="hiking">Hiking</label><br />
+
+      <input type="button" value="Tampilkan" onclick="submitForm()" />
+      <input type="reset" value="Reset" onclick="resetForm()" />
+    </form>
+  </body>
+  <script>
+    function submitForm() {
+      var nama = document.getElementById("nama").value;
+      var tempatLahir = document.getElementById("tempat_lahir").value;
+      var tanggalLahir = document.getElementById("tanggal_lahir").value;
+      var alamat = document.getElementById("alamat").value;
+      var noTelepon = document.getElementById("no_telepon").value;
+      var jenisKelamin = document.querySelector(
+        'input[name="jenis_kelamin"]:checked'
+      );
+      var agama = document.getElementById("agama").value;
+      var hobiArray = document.querySelectorAll('input[name="hobi[]"]:checked');
+      var hobi = [];
+      hobiArray.forEach(function (checkbox) {
+        hobi.push(checkbox.value);
+      });
+      var hasil =
+        "Nama: " +
+        nama +
+        "\nTempat Lahir: " +
+        tempatLahir +
+        "\nTanggal Lahir: " +
+        tanggalLahir +
+        "\nAlamat: " +
+        alamat +
+        "\nNomor Telepon: " +
+        noTelepon +
+        "\nJenis Kelamin: " +
+        (jenisKelamin ? jenisKelamin.value : "Belum dipilih") +
+        "\nAgama: " +
+        agama +
+        "\nHobi: " +
+        (hobi.length > 0 ? hobi.join(", ") : "Belum dipilih");
+
+      alert(hasil);
+    }
+
+    function resetForm() {
+      document.getElementById("form_data_diri").reset();
+    }
+  </script>
+</html>
